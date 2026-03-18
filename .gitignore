@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.serverless/
+node_modules/
+.DS_Store
+*.egg-info/
+dist/
+build/
+.python-version

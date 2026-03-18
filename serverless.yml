@@ -1,0 +1,41 @@
+service: rag-fastapi
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.12
+  architecture: x86_64
+  region: 'ap-northeast-1'
+  stage: ${opt:stage, 'dev'}
+  memorySize: 512
+  timeout: 30
+
+functions:
+  app:
+    handler: handler.handler
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-python-requirements
+
+package:
+  include:
+    - .env
+  exclude:
+    - node_modules/**
+    - .venv/**
+    - .git/**
+    - .gitignore
+    - .requirements.zip
+    - __pycache__/**
+    - .python-version
+    - .github/**
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    useStaticCache: false
+    zip: false
