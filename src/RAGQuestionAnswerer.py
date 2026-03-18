@@ -231,7 +231,7 @@ With this context, please answer the user's question. Be accurate, relevant and 
             max_tokens=800  # Limit answer length for faster responses
         )
 
-        return response.choices[0].message.content, chunks, tags
+        return response.choices[0].message.content, chunks, tags, query
 
     def close(self):
         """Close database connection"""
@@ -244,7 +244,7 @@ if __name__ == "__main__":
 
     try:
         question = "restore database "
-        answer, chunks, tags = rag.answer_question(question)
+        answer, chunks, tags, rephased_question = rag.answer_question(question)
 
         print("\n" + "="*80)
         print("QUESTION:", question)

@@ -34,10 +34,10 @@ async def answer(question: str):
 async def answer(question: str):
 
     rag = RAGQuestionAnswerer(retrieval_k=10)
-    answer, chunks, tags = rag.answer_question(question)
+    answer, chunks, tags, rephased_question = rag.answer_question(question)
 
     titles = [chunk.metadata['title'] for chunk in chunks]
-    return {"answer": answer, "titles": titles, "tags": tags}
+    return {"answer": answer, "titles": titles, "tags": tags, "rephased_question": rephased_question}
 
 
 @app.get("/", summary="Test endpoint to verify the API is working")
