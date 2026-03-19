@@ -122,6 +122,7 @@ TAGS = [
     "sql",
     "sqlalchemy",
     "sqlite",
+    "streaming",
     "stripe",
     "swagger-ui",
     "system-design",
